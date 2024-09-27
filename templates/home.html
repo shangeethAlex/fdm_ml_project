@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Exam Performance Prediction</title>
+    <title>CO2 Emissions Prediction</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -38,7 +38,6 @@
             margin-bottom: 1rem;
             margin-right: 100px;
             background-color: #55AD9B;
-            
         }
         .result-container {
             margin-top: 1rem;
@@ -54,71 +53,62 @@
 <body>
     <div class="login">
         <form action="{{ url_for('predict_datapoint')}}" method="post">
-            <h1>Student Exam Performance Prediction</h1>
+            <h1>CO2 Emissions Prediction</h1>
             <div class="row">
                 <div class="col-md-6">
+                    <!-- Categorical Fields -->
                     <div class="form-group">
-                        <label for="gender" class="form-label">Gender</label>
-                        <select class="form-control" id="gender" name="gender" required>
-                            <option selected disabled value="">Select your Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
+                        <label for="make" class="form-label">Make</label>
+                        <input class="form-control" type="text" id="make" name="make" placeholder="Enter car make" required>
                     </div>
                     <div class="form-group">
-                        <label for="ethnicity" class="form-label">Race or Ethnicity</label>
-                        <select class="form-control" id="ethnicity" name="ethnicity" required>
-                            <option selected disabled value="">Select Ethnicity</option>
-                            <option value="group A">Group A</option>
-                            <option value="group B">Group B</option>
-                            <option value="group C">Group C</option>
-                            <option value="group D">Group D</option>
-                            <option value="group E">Group E</option>
-                        </select>
+                        <label for="model" class="form-label">Model</label>
+                        <input class="form-control" type="text" id="model" name="model" placeholder="Enter car model" required>
                     </div>
                     <div class="form-group">
-                        <label for="parental_level_of_education" class="form-label">Parental Level of Education</label>
-                        <select class="form-control" id="parental_level_of_education" name="parental_level_of_education" required>
-                            <option selected disabled value="">Select Parent Education</option>
-                            <option value="associate's degree">Associate's degree</option>
-                            <option value="bachelor's degree">Bachelor's degree</option>
-                            <option value="high school">High school</option>
-                            <option value="master's degree">Master's degree</option>
-                            <option value="some college">Some college</option>
-                            <option value="some high school">Some high school</option>
-                        </select>
+                        <label for="vehicle_class" class="form-label">Vehicle Class</label>
+                        <input class="form-control" type="text" id="vehicle_class" name="vehicle_class" placeholder="Enter vehicle class" required>
                     </div>
                     <div class="form-group">
-                        <label for="lunch" class="form-label">Lunch Type</label>
-                        <select class="form-control" id="lunch" name="lunch" required>
-                            <option selected disabled value="">Select Lunch Type</option>
-                            <option value="free/reduced">Free/Reduced</option>
-                            <option value="standard">Standard</option>
-                        </select>
+                        <label for="transmission" class="form-label">Transmission</label>
+                        <input class="form-control" type="text" id="transmission" name="transmission" placeholder="Enter transmission type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuel_type" class="form-label">Fuel Type</label>
+                        <input class="form-control" type="text" id="fuel_type" name="fuel_type" placeholder="Enter fuel type" required>
                     </div>
                 </div>
                 <div class="col-md-6">
+                    <!-- Numerical Fields -->
                     <div class="form-group">
-                        <label for="test_preparation_course" class="form-label">Test Preparation Course</label>
-                        <select class="form-control" id="test_preparation_course" name="test_preparation_course" required>
-                            <option selected disabled value="">Select Test Course</option>
-                            <option value="none">None</option>
-                            <option value="completed">Completed</option>
-                        </select>
+                        <label for="engine_size" class="form-label">Engine Size (L)</label>
+                        <input class="form-control" type="number" id="engine_size" name="engine_size" placeholder="Enter engine size in liters" step="0.1" required>
                     </div>
                     <div class="form-group">
-                        <label for="reading_score" class="form-label">Reading Score out of 100</label>
-                        <input class="form-control" type="number" id="reading_score" name="reading_score" placeholder="Enter your Reading score" min="0" max="100" required>
+                        <label for="cylinders" class="form-label">Cylinders</label>
+                        <input class="form-control" type="number" id="cylinders" name="cylinders" placeholder="Enter number of cylinders" required>
                     </div>
                     <div class="form-group">
-                        <label for="writing_score" class="form-label">Writing Score out of 100</label>
-                        <input class="form-control" type="number" id="writing_score" name="writing_score" placeholder="Enter your Writing score" min="0" max="100" required>
+                        <label for="fuel_consumption_city" class="form-label">Fuel Consumption City (L/100 km)</label>
+                        <input class="form-control" type="number" id="fuel_consumption_city" name="fuel_consumption_city" placeholder="Enter city fuel consumption" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuel_consumption_hwy" class="form-label">Fuel Consumption Hwy (L/100 km)</label>
+                        <input class="form-control" type="number" id="fuel_consumption_hwy" name="fuel_consumption_hwy" placeholder="Enter highway fuel consumption" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuel_consumption_comb" class="form-label">Fuel Consumption Comb (L/100 km)</label>
+                        <input class="form-control" type="number" id="fuel_consumption_comb" name="fuel_consumption_comb" placeholder="Enter combined fuel consumption" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuel_consumption_comb_mpg" class="form-label">Fuel Consumption Comb (mpg)</label>
+                        <input class="form-control" type="number" id="fuel_consumption_comb_mpg" name="fuel_consumption_comb_mpg" placeholder="Enter combined fuel consumption in mpg" step="0.1" required>
                     </div>
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary">Predict your Math Score</button>
+                        <button type="submit" class="btn btn-primary">Predict CO2 Emissions</button>
                     </div>
                     <div class="result-container">
-                        <h2>The prediction is {{results}}</h2>
+                        <h2>The predicted CO2 emissions are {{results}} g/km</h2>
                     </div>
                 </div>
             </div>

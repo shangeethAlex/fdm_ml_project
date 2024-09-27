@@ -36,9 +36,6 @@ def predict_datapoint():
             Fuel_Consumption_Comb_mpg=request.form.get('Fuel_Consumption_Comb_mpg'),
             )
         
-        
-        
-        
         pred_df=data.get_data_as_data_frame()
         print(pred_df)
 
@@ -48,6 +45,5 @@ def predict_datapoint():
     
     
 
-if __name__=="__main__":
-    # app.run(host="0.0.0.0",port=8080)        
+if __name__=="__main__":     
     app.run(host='0.0.0.0', port=8080)        
