@@ -64,20 +64,19 @@ if st.button("Predict CO2 Emissions"):
         fuel_type != 'Select Fuel Type'):
         
         data = CustomData(
-        
             Make=make,
             Model=model,
             Vehicle_Class=vehicle_class,
             Transmission=transmission,
-            Fuel_Type= fuel_type,
+            Fuel_Type=fuel_type,
             Engine_Size=engine_size,
             Cylinders=cylinders,
-            Fuel_Consumption_City = fuel_consumption_city,
-            Fuel_Consumption_Hwy = fuel_consumption_hwy,
-            Fuel_Consumption_Comb = fuel_consumption_comb,
-            Fuel_Consumption_Comb_mpg = fuel_consumption_comb_mpg
+            Fuel_Consumption_City=fuel_consumption_city,
+            Fuel_Consumption_Hwy=fuel_consumption_hwy,
+            Fuel_Consumption_Comb=fuel_consumption_comb,
+            Fuel_Consumption_Comb_mpg=fuel_consumption_comb_mpg
         )
         prediction = predict(data)
-        st.success(f"The predicted CO2 Emissions (g/km) is: {prediction}")
+        st.success(f"The predicted CO2 Emissions (g/km) is: {int(round(prediction))}")  # Round and convert to int
     else:
         st.error("Please fill in all the required fields.")
